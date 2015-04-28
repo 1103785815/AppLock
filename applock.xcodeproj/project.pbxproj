@@ -12,6 +12,8 @@
 		1F7A58891AEF671300831282 /* KKKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7A58851AEF671300831282 /* KKKeychain.m */; };
 		1F7A588D1AEF675000831282 /* PassLockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7A588C1AEF675000831282 /* PassLockManager.m */; };
 		1F7A58901AEF678800831282 /* PassLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7A588F1AEF678800831282 /* PassLockViewController.m */; };
+		1F7A58941AEF755A00831282 /* box_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F7A58921AEF755A00831282 /* box_empty@2x.png */; };
+		1F7A58951AEF755A00831282 /* box_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F7A58931AEF755A00831282 /* box_filled@2x.png */; };
 		1FAC60B01AEE244300C0C055 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAC60AF1AEE244300C0C055 /* main.m */; };
 		1FAC60B31AEE244300C0C055 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAC60B21AEE244300C0C055 /* AppDelegate.m */; };
 		1FAC60B81AEE244300C0C055 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAC60B71AEE244300C0C055 /* Images.xcassets */; };
@@ -41,6 +43,8 @@
 		1F7A588C1AEF675000831282 /* PassLockManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassLockManager.m; sourceTree = "<group>"; };
 		1F7A588E1AEF678800831282 /* PassLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassLockViewController.h; sourceTree = "<group>"; };
 		1F7A588F1AEF678800831282 /* PassLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassLockViewController.m; sourceTree = "<group>"; };
+		1F7A58921AEF755A00831282 /* box_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box_empty@2x.png"; sourceTree = "<group>"; };
+		1F7A58931AEF755A00831282 /* box_filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box_filled@2x.png"; sourceTree = "<group>"; };
 		1FAC60AA1AEE244300C0C055 /* applock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = applock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAC60AE1AEE244300C0C055 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FAC60AF1AEE244300C0C055 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -78,6 +82,7 @@
 		1F7A58811AEF671300831282 /* PassLock */ = {
 			isa = PBXGroup;
 			children = (
+				1F7A58911AEF755A00831282 /* image */,
 				1F7A588E1AEF678800831282 /* PassLockViewController.h */,
 				1F7A588F1AEF678800831282 /* PassLockViewController.m */,
 				1F7A588B1AEF675000831282 /* PassLockManager.h */,
@@ -88,6 +93,15 @@
 				1F7A58851AEF671300831282 /* KKKeychain.m */,
 			);
 			path = PassLock;
+			sourceTree = "<group>";
+		};
+		1F7A58911AEF755A00831282 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				1F7A58921AEF755A00831282 /* box_empty@2x.png */,
+				1F7A58931AEF755A00831282 /* box_filled@2x.png */,
+			);
+			path = image;
 			sourceTree = "<group>";
 		};
 		1FAC60A11AEE244300C0C055 = {
@@ -231,6 +245,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F7A58941AEF755A00831282 /* box_empty@2x.png in Resources */,
+				1F7A58951AEF755A00831282 /* box_filled@2x.png in Resources */,
 				1FAC60E31AEE260F00C0C055 /* TestViewController.xib in Resources */,
 				1FAC60BB1AEE244300C0C055 /* LaunchScreen.xib in Resources */,
 				1FAC60B81AEE244300C0C055 /* Images.xcassets in Resources */,
