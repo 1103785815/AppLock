@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  applock
 //
-//  Created by 杜学超 on 15/4/27.
+//  Created by Du xuechao on 15/4/27.
 //  Copyright (c) 2015年 Du xuechao. All rights reserved.
 //
 
@@ -17,7 +17,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.2
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     TestViewController * vc = [[TestViewController alloc] init];
     self.window.rootViewController = vc;
