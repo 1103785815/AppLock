@@ -99,5 +99,16 @@
 	return nil;
 }
 
-
++ (NSMutableDictionary *)getKeychainQuery:(NSString *)service {
+    return [NSMutableDictionary dictionaryWithObjectsAndKeys:
+            (__bridge_transfer id)kSecClassGenericPassword,(__bridge_transfer id)kSecClass,
+            service, (__bridge_transfer id)kSecAttrService,
+            service, (__bridge_transfer id)kSecAttrAccount,
+            (__bridge_transfer id)kSecAttrAccessibleAfterFirstUnlock,(__bridge_transfer id)kSecAttrAccessible,
+            nil];  
+}
++ (void)deleteForkey:(NSString *)service {
+    NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
+    SecItemDelete((__bridge_retained CFDictionaryRef)keychainQuery);
+}
 @end

@@ -1,16 +1,28 @@
 //
-//  PasswordViewController.m
-//  PrivateAlbums
+//  PassLockViewController.m
+//  applock
 //
-//  Created by Du xuechao on 15/4/20.
+//  Created by 杜学超 on 15/4/27.
 //  Copyright (c) 2015年 Du xuechao. All rights reserved.
 //
 
-#import "PasswordViewController.h"
+#import "PassLockViewController.h"
+#import <AudioToolbox/AudioToolbox.h>  //需要振动需要添加此类库
 #import "InputView.h"
 #import "KKKeychain.h"
 #define numCount 4
-@interface PasswordViewController ()<UITextFieldDelegate>
+#define SCREEN_WIDTH   ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT  ([UIScreen mainScreen].bounds.size.height)
+#define FRAME_BOTTOM(__view) CGRectGetMaxY(__view.frame)
+//调试输出
+#ifdef DEBUG
+#define DLog(...) NSLog(__VA_ARGS__)
+#else
+#define DLog(...) {}
+#endif
+#define SETKET @"PassWord"
+
+@interface PassLockViewController ()<UITextFieldDelegate>
 @property (nonatomic,strong) NSString  * firstInputString;
 @property (nonatomic,strong) NSString  * secondInputString;
 
@@ -21,13 +33,14 @@
 @property (nonatomic,strong) UILabel   * messageLabel1;
 
 @property (nonatomic,assign) BOOL isInit;
-
 @end
 
-@implementation PasswordViewController
+@implementation PassLockViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(becomeFirstResponder1) name:UIKeyboardDidHideNotification  object:nil];
+
     UIButton * presentVC = [UIButton buttonWithType:UIButtonTypeCustom];
     presentVC.frame  = CGRectMake(0, 0, 60, 30);
     presentVC.center = self.view.center;
@@ -49,15 +62,15 @@
     _setPassWordScrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     _setPassWordScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 2, SCREEN_HEIGHT );
     _setPassWordScrollView.showsHorizontalScrollIndicator = NO;
-    _setPassWordScrollView.backgroundColor = [UIColor purpleColor];
+    _setPassWordScrollView.backgroundColor = [UIColor whiteColor];
     _setPassWordScrollView.pagingEnabled = YES;
     _setPassWordScrollView.userInteractionEnabled = NO;
     [self.view addSubview:_setPassWordScrollView];
     
-     _inputView0 =   [[InputView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 63)];
+    _inputView0 =   [[InputView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 63)];
     [_setPassWordScrollView addSubview:_inputView0];
     _messageLabel0 = [[UILabel alloc] initWithFrame:CGRectMake(0, FRAME_BOTTOM(_inputView0) + 10, SCREEN_WIDTH, 30)];
-    _messageLabel0.backgroundColor = [UIColor grayColor];
+    _messageLabel0.backgroundColor = [UIColor brownColor];
     _messageLabel0.textAlignment = NSTextAlignmentCenter;
     [self.setPassWordScrollView addSubview:_messageLabel0];
     
@@ -66,7 +79,7 @@
             _messageLabel0.text = @"您要设置的密码";
             _messageLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, FRAME_BOTTOM(_inputView0) + 10, SCREEN_WIDTH, 30)];
             _messageLabel1.text = @"再次输入密码";
-            _messageLabel1.backgroundColor = [UIColor grayColor];
+            _messageLabel1.backgroundColor = [UIColor brownColor];
             _messageLabel1.textAlignment = NSTextAlignmentCenter;
             [self.setPassWordScrollView addSubview:_messageLabel1];
             break;
@@ -79,13 +92,17 @@
             
             _messageLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, FRAME_BOTTOM(_inputView0) + 10, SCREEN_WIDTH, 30)];
             _messageLabel1.text = @"输入新的密码";
-            _messageLabel1.backgroundColor = [UIColor grayColor];
+            _messageLabel1.backgroundColor = [UIColor brownColor];
             _messageLabel1.textAlignment = NSTextAlignmentCenter;
             [self.setPassWordScrollView addSubview:_messageLabel1];
             break;
         default:
             break;
     }
+}
+-(void) becomeFirstResponder1
+{
+    [_password becomeFirstResponder];
 }
 -(void)test
 {
@@ -126,7 +143,7 @@
         //第一页的时候
         if (pageNum == 0)
         {
-            NSString * getPassword = [KKKeychain getStringForKey:@"PassWord"];
+            NSString * getPassword = [KKKeychain getStringForKey:SETKET];
             //如果第一次验证成功
             if ([getPassword isEqualToString:result])
             {
@@ -134,10 +151,13 @@
             }
             else
             {
-                DLog(@"密码错误");
+                //密码错误
+                [self faileClean];
+                [self addFailOperation];
+                _messageLabel0.text = @"验证失败,重新输入";
                 return;
             }
- 
+            
         }
         //新密码
         if (pageNum == 1)
@@ -147,7 +167,7 @@
             _messageLabel0 = [[UILabel alloc] init];
             _messageLabel0.frame = CGRectMake(SCREEN_WIDTH*2, FRAME_BOTTOM(_inputView0) + 10, SCREEN_WIDTH, 30);
             _messageLabel0.text  = @"请再输一次";
-            _messageLabel0.backgroundColor = [UIColor grayColor];
+            _messageLabel0.backgroundColor = [UIColor brownColor];
             _messageLabel0.textAlignment = NSTextAlignmentCenter;
             [_setPassWordScrollView addSubview:_messageLabel0];
             [UIView animateWithDuration:0.25f animations:^{
@@ -167,8 +187,12 @@
             //如果第一次输入的新密码和第二次一样的话那么就修改
             if ([_firstInputString isEqualToString:result])
             {
-                [KKKeychain setString:result forKey:@"PassWord"];
+                [KKKeychain setString:result forKey:SETKET];
                 DLog(@"修改成功!");
+                if ([self.delegate respondsToSelector:@selector(passwordResult:inputType:)])
+                {
+                    [self.delegate passwordResult:YES inputType:InputTypeChange];
+                }
                 [self dismissViewControllerAnimated:YES completion:nil];
                 return;
             }
@@ -177,7 +201,7 @@
                 //两次输入不一致 回到第二页
                 [self moveScrollerView];
                 _messageLabel1.text  = @"两次输入不一致,重新输入";
-
+                
             }
         }
     }
@@ -208,22 +232,58 @@
     [self inputImageChangeResultCount:resultcount];
     if (resultcount == numCount)
     {
-      NSString * getPassword = [KKKeychain getStringForKey:@"PassWord"];
+        NSString * getPassword = [KKKeychain getStringForKey:SETKET];
         if ([getPassword isEqualToString:result])
         {
             DLog(@"验证成功,放行!");
-            if ([self.delegate respondsToSelector:@selector(passwordResult:)])
+            if ([self.delegate respondsToSelector:@selector(passwordResult:inputType:)])
             {
-                [self.delegate passwordResult:YES];
+                [self.delegate passwordResult:YES inputType:InputTypeConfirm];
             }
         }
         else
         {
-            DLog(@"验证失败");
+            //验证失败
+            [self faileClean];
+            [self addFailOperation];
+            _messageLabel0.text = @"验证失败,重新输入";
         }
     }
 }
+//添加失败 操作
+- (void)addFailOperation
+{
+
+    //振动需要添加  必须添加AudioToolbox.framework
+    if (_shakeDevice)
+    {
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    }
+    if (_addFailAnimation)
+    {
+        //添加动画
+        [self addShakeAnimationForView:_inputView0 withDuration:0.5f];
+    }
+}
+- (void) faileClean
+{
+    double delayInSeconds = 0.15f;
+    dispatch_time_t delayInNanoSeconds =dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(delayInNanoSeconds, dispatch_get_main_queue(), ^{
+        _password.text = @"";//清空
+        [self cleanImage];   //图片复原
+    });
+}
 #pragma mark--输入时的图片改变
+- (void) cleanImage
+{
+    UIView * backView = [self.view viewWithTag:11];
+    [backView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+    {
+        UIImageView * imageView = obj;
+        imageView.image = [UIImage imageNamed:@"box_empty"];
+    }];
+}
 - (void) inputImageChangeResultCount:(NSInteger) resultcount
 {
     UIView * backView = [self.view viewWithTag:11];
@@ -280,11 +340,10 @@
         }
         else
         {
-            NSLog(@"设置完毕,两次输入一致!"); //保存到钥匙串
-            [KKKeychain setString:result forKey:@"PassWord"];
-            if ([self.delegate respondsToSelector:@selector(passwordResult:)])
+            [KKKeychain setString:result forKey:SETKET];
+            if ([self.delegate respondsToSelector:@selector(passwordResult:inputType:)])
             {
-                [self.delegate passwordResult:YES];
+                [self.delegate passwordResult:YES inputType:InputTypeSet];
             }
             return NO;
         }
@@ -303,6 +362,31 @@
         }];
     }
     return NO;
+}
+#pragma mark - 抖动 动画
+- (void)addShakeAnimationForView:(UIView *)view withDuration:(NSTimeInterval)duration {
+    CAKeyframeAnimation * animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.x"];
+    CGFloat currentTx = view.transform.tx;
+    //    animation.delegate = self;
+    animation.duration = duration;
+    animation.values = @[ @(currentTx), @(currentTx + 10), @(currentTx-8), @(currentTx + 8), @(currentTx -5), @(currentTx + 5), @(currentTx) ];
+    animation.keyTimes = @[ @(0), @(0.225), @(0.425), @(0.6), @(0.75), @(0.875), @(1) ];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [view.layer addAnimation:animation forKey:@""];
+}
+#pragma mark -当前密码
++ (NSString *)getCurrentPassWord
+{
+    NSString * currentPassWord = [KKKeychain getStringForKey:SETKET];
+    if (currentPassWord.length == 0)
+    {
+        return @"not set";
+    }
+    return currentPassWord;
+}
+-(void)dealloc
+{
+[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

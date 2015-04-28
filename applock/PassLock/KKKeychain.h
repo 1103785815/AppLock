@@ -19,8 +19,9 @@
 
 @interface KKKeychain : NSObject
 
-+ (BOOL)setString:(NSString*)string forKey:(NSString*)key;
++ (BOOL)setString:(NSString*)string forKey:(NSString*)key;//设置
 
-+ (NSString*)getStringForKey:(NSString*)key;
++ (NSString*)getStringForKey:(NSString*)key;//获取
 
++ (void)deleteForkey:(NSString *)service;//删除
 @end

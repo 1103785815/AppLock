@@ -14,13 +14,15 @@
 {
     if (self = [super initWithFrame:frame])
     {
-//        self.frame = frame;
-//        _backView = [[UIView alloc] initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 63)];
-        self.backgroundColor = [UIColor grayColor];
+
+        self.backgroundColor = [UIColor whiteColor];
+        self.layer.cornerRadius = 5.f;
+        self.layer.borderWidth = 1.0f;
+        self.layer.borderColor = [UIColor blueColor].CGColor;
         self.tag = 11;
         CGFloat spacex = 10;
         CGFloat imagewidth = 61;
-        CGFloat fromx = (SCREEN_WIDTH - (spacex + imagewidth) * 3 - imagewidth)/2;
+        CGFloat fromx = (([UIScreen mainScreen].bounds.size.width) - (spacex + imagewidth) * 3 - imagewidth)/2;
         for (int i = 0; i < numCount1; i++)
         {
             UIImageView * backImageView = [[UIImageView alloc] init];

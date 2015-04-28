@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F7A58741AEF340A00831282 /* PassLockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7A58731AEF340A00831282 /* PassLockManager.m */; };
 		1F7A58761AEF4E2E00831282 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7A58751AEF4E2E00831282 /* AudioToolbox.framework */; };
+		1F7A58881AEF671300831282 /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7A58831AEF671300831282 /* InputView.m */; };
+		1F7A58891AEF671300831282 /* KKKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7A58851AEF671300831282 /* KKKeychain.m */; };
+		1F7A588D1AEF675000831282 /* PassLockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7A588C1AEF675000831282 /* PassLockManager.m */; };
+		1F7A58901AEF678800831282 /* PassLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7A588F1AEF678800831282 /* PassLockViewController.m */; };
 		1FAC60B01AEE244300C0C055 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAC60AF1AEE244300C0C055 /* main.m */; };
 		1FAC60B31AEE244300C0C055 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAC60B21AEE244300C0C055 /* AppDelegate.m */; };
 		1FAC60B81AEE244300C0C055 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FAC60B71AEE244300C0C055 /* Images.xcassets */; };
@@ -16,11 +19,6 @@
 		1FAC60C71AEE244300C0C055 /* applockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAC60C61AEE244300C0C055 /* applockTests.m */; };
 		1FAC60E21AEE260F00C0C055 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAC60E01AEE260F00C0C055 /* TestViewController.m */; };
 		1FAC60E31AEE260F00C0C055 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FAC60E11AEE260F00C0C055 /* TestViewController.xib */; };
-		1FAC60FD1AEE27B200C0C055 /* box_filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FAC60F51AEE27B200C0C055 /* box_filled@2x.png */; };
-		1FAC60FE1AEE27B200C0C055 /* box_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FAC60F61AEE27B200C0C055 /* box_empty@2x.png */; };
-		1FAC60FF1AEE27B200C0C055 /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAC60F81AEE27B200C0C055 /* InputView.m */; };
-		1FAC61001AEE27B200C0C055 /* KKKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAC60FA1AEE27B200C0C055 /* KKKeychain.m */; };
-		1FAC61041AEE280A00C0C055 /* PassLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FAC61031AEE280A00C0C055 /* PassLockViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +32,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F7A58721AEF340A00831282 /* PassLockManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassLockManager.h; sourceTree = "<group>"; };
-		1F7A58731AEF340A00831282 /* PassLockManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassLockManager.m; sourceTree = "<group>"; };
 		1F7A58751AEF4E2E00831282 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1F7A58821AEF671300831282 /* InputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputView.h; sourceTree = "<group>"; };
+		1F7A58831AEF671300831282 /* InputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputView.m; sourceTree = "<group>"; };
+		1F7A58841AEF671300831282 /* KKKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKKeychain.h; sourceTree = "<group>"; };
+		1F7A58851AEF671300831282 /* KKKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKKeychain.m; sourceTree = "<group>"; };
+		1F7A588B1AEF675000831282 /* PassLockManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassLockManager.h; sourceTree = "<group>"; };
+		1F7A588C1AEF675000831282 /* PassLockManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassLockManager.m; sourceTree = "<group>"; };
+		1F7A588E1AEF678800831282 /* PassLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassLockViewController.h; sourceTree = "<group>"; };
+		1F7A588F1AEF678800831282 /* PassLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassLockViewController.m; sourceTree = "<group>"; };
 		1FAC60AA1AEE244300C0C055 /* applock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = applock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FAC60AE1AEE244300C0C055 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FAC60AF1AEE244300C0C055 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -50,14 +54,6 @@
 		1FAC60DF1AEE260F00C0C055 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		1FAC60E01AEE260F00C0C055 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		1FAC60E11AEE260F00C0C055 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
-		1FAC60F51AEE27B200C0C055 /* box_filled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box_filled@2x.png"; sourceTree = "<group>"; };
-		1FAC60F61AEE27B200C0C055 /* box_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box_empty@2x.png"; sourceTree = "<group>"; };
-		1FAC60F71AEE27B200C0C055 /* InputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputView.h; sourceTree = "<group>"; };
-		1FAC60F81AEE27B200C0C055 /* InputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputView.m; sourceTree = "<group>"; };
-		1FAC60F91AEE27B200C0C055 /* KKKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKKeychain.h; sourceTree = "<group>"; };
-		1FAC60FA1AEE27B200C0C055 /* KKKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKKeychain.m; sourceTree = "<group>"; };
-		1FAC61021AEE280A00C0C055 /* PassLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassLockViewController.h; sourceTree = "<group>"; };
-		1FAC61031AEE280A00C0C055 /* PassLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassLockViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +75,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F7A58811AEF671300831282 /* PassLock */ = {
+			isa = PBXGroup;
+			children = (
+				1F7A588E1AEF678800831282 /* PassLockViewController.h */,
+				1F7A588F1AEF678800831282 /* PassLockViewController.m */,
+				1F7A588B1AEF675000831282 /* PassLockManager.h */,
+				1F7A588C1AEF675000831282 /* PassLockManager.m */,
+				1F7A58821AEF671300831282 /* InputView.h */,
+				1F7A58831AEF671300831282 /* InputView.m */,
+				1F7A58841AEF671300831282 /* KKKeychain.h */,
+				1F7A58851AEF671300831282 /* KKKeychain.m */,
+			);
+			path = PassLock;
+			sourceTree = "<group>";
+		};
 		1FAC60A11AEE244300C0C055 = {
 			isa = PBXGroup;
 			children = (
@@ -101,7 +112,7 @@
 		1FAC60AC1AEE244300C0C055 /* applock */ = {
 			isa = PBXGroup;
 			children = (
-				1FAC60F31AEE27B200C0C055 /* PassLock */,
+				1F7A58811AEF671300831282 /* PassLock */,
 				1FAC60B11AEE244300C0C055 /* AppDelegate.h */,
 				1FAC60B21AEE244300C0C055 /* AppDelegate.m */,
 				1FAC60DF1AEE260F00C0C055 /* TestViewController.h */,
@@ -138,32 +149,6 @@
 				1FAC60C51AEE244300C0C055 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		1FAC60F31AEE27B200C0C055 /* PassLock */ = {
-			isa = PBXGroup;
-			children = (
-				1FAC60F41AEE27B200C0C055 /* image */,
-				1FAC60F71AEE27B200C0C055 /* InputView.h */,
-				1FAC60F81AEE27B200C0C055 /* InputView.m */,
-				1FAC60F91AEE27B200C0C055 /* KKKeychain.h */,
-				1FAC60FA1AEE27B200C0C055 /* KKKeychain.m */,
-				1FAC61021AEE280A00C0C055 /* PassLockViewController.h */,
-				1FAC61031AEE280A00C0C055 /* PassLockViewController.m */,
-				1F7A58721AEF340A00831282 /* PassLockManager.h */,
-				1F7A58731AEF340A00831282 /* PassLockManager.m */,
-			);
-			name = PassLock;
-			path = ../../PassLock;
-			sourceTree = "<group>";
-		};
-		1FAC60F41AEE27B200C0C055 /* image */ = {
-			isa = PBXGroup;
-			children = (
-				1FAC60F51AEE27B200C0C055 /* box_filled@2x.png */,
-				1FAC60F61AEE27B200C0C055 /* box_empty@2x.png */,
-			);
-			path = image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,8 +231,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FAC60FD1AEE27B200C0C055 /* box_filled@2x.png in Resources */,
-				1FAC60FE1AEE27B200C0C055 /* box_empty@2x.png in Resources */,
 				1FAC60E31AEE260F00C0C055 /* TestViewController.xib in Resources */,
 				1FAC60BB1AEE244300C0C055 /* LaunchScreen.xib in Resources */,
 				1FAC60B81AEE244300C0C055 /* Images.xcassets in Resources */,
@@ -268,13 +251,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FAC61041AEE280A00C0C055 /* PassLockViewController.m in Sources */,
+				1F7A58901AEF678800831282 /* PassLockViewController.m in Sources */,
 				1FAC60E21AEE260F00C0C055 /* TestViewController.m in Sources */,
-				1FAC60FF1AEE27B200C0C055 /* InputView.m in Sources */,
+				1F7A58881AEF671300831282 /* InputView.m in Sources */,
 				1FAC60B31AEE244300C0C055 /* AppDelegate.m in Sources */,
 				1FAC60B01AEE244300C0C055 /* main.m in Sources */,
-				1FAC61001AEE27B200C0C055 /* KKKeychain.m in Sources */,
-				1F7A58741AEF340A00831282 /* PassLockManager.m in Sources */,
+				1F7A58891AEF671300831282 /* KKKeychain.m in Sources */,
+				1F7A588D1AEF675000831282 /* PassLockManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
