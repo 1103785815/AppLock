@@ -7,8 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-
 @interface PassLockManager : NSObject
 
+/**
+ *  显示锁屏
+ */
 - (void) showPassLockScreen;
+/**
+ *  移除锁屏
+ */
+- (void) resignActive;
 @end

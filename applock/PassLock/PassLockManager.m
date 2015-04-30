@@ -8,28 +8,24 @@
 
 #import "PassLockManager.h"
 #import "PassLockViewController.h"
+#define ViewTag 1123143543
+
 @interface PassLockManager ()<PasswordDelegate>
+
 @property (nonatomic,strong) PassLockViewController * passLockVC;
 @end
 @implementation PassLockManager
 -(void)showPassLockScreen
 {
-    if (_passLockVC.view != nil) {
-        [_passLockVC.view removeFromSuperview];
-        _passLockVC = nil;
-    }
-    //添加view
-    NSString * passWord = [PassLockViewController getCurrentPassWord];
-    if (passWord.length)
-    {
-        self.passLockVC = [[PassLockViewController alloc] init];
-        self.passLockVC.delegate  = self;
-        self.passLockVC.inputtype = InputTypeConfirm;
-        self.passLockVC.addFailAnimation = YES;
-        self.passLockVC.shakeDevice = YES;
-        UIWindow * window = [UIApplication sharedApplication].keyWindow;
-        [window addSubview:self.passLockVC.view];
-    }
+    UIWindow * win =  [UIApplication sharedApplication].keyWindow;
+    PassLockViewController * passLockVC = [[PassLockViewController alloc] init];
+    passLockVC.delegate  = self;
+    passLockVC.inputtype = InputTypeConfirm;
+    passLockVC.addFailAnimation = YES;
+    passLockVC.shakeDevice = YES;
+    passLockVC.view.tag = ViewTag;
+    self.passLockVC = passLockVC;
+    [win addSubview:self.passLockVC.view];
 }
 #pragma mark -- 成功之后调取的代理
 -(void)passwordResult:(BOOL)issuccess inputType:(InputType)type
@@ -47,6 +43,17 @@
         [_passLockVC.view removeFromSuperview];
         _passLockVC = nil;
     }];
+}
+- (void) resignActive
+{
+    double delayInSeconds = 0.10f;
+    dispatch_time_t delayInNanoSeconds =dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(delayInNanoSeconds, dispatch_get_main_queue(), ^{
+        UIWindow * win =  [UIApplication sharedApplication].keyWindow;
+        UIView * a = (UIView *)[win viewWithTag:ViewTag];
+        [a removeFromSuperview];
+    });
+    
 }
 
 @end
